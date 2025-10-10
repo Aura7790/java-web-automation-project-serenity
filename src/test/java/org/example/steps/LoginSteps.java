@@ -13,10 +13,15 @@ public class LoginSteps extends ScenarioSteps {
     private AccountPage accountPage;
 
     @Step
-    public void navigateToLoginPage(){
+    public void navigateToRegisterLoginPage(){
         homePage.open();
         homePage.clickOnCookiesConsent();
         homePage.clickOnSignupLoginLink();
+    }
+
+    @Step
+    public void checkLoginHeading(String heading){
+        Assert.assertEquals(heading, loginPage.getHeadingText());
     }
 
     @Step
@@ -36,7 +41,13 @@ public class LoginSteps extends ScenarioSteps {
 
     @Step
     public void userIsLoggedIn(String username){
+        accountPage.isLogoutLinkVisible();
         Assert.assertEquals("Logged in as " + username, accountPage.getLoggedInText(username));
-        accountPage.isLogoutLink("Logout");
+        accountPage.checkLogoutLinkText("Logout");
+    }
+
+    @Step
+    public void clickLogout(){
+        accountPage.clickLogoutLink();
     }
 }
