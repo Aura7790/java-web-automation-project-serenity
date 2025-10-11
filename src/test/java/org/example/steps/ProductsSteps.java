@@ -88,4 +88,17 @@ public class ProductsSteps extends ScenarioSteps {
     public void clickContinueShopping(){
         productsPage.clickContinueShoppingButton();
     }
+
+    @Step
+    public void searchForProduct(String keyword) {
+        productsPage.searchFor(keyword);
+        productsPage.clickSearchButton();
+    }
+
+    @Step
+    public void verifySearchResultsAreNotEmpty() {
+        Assert.assertTrue(productsPage.isSearchResultNotEmpty());
+        Assert.assertNotEquals(0, productsPage.getSearchResultCount());
+        System.out.println("Search results found: " + productsPage.getSearchResultCount());
+    }
 }

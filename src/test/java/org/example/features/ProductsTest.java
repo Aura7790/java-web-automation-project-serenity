@@ -73,4 +73,12 @@ public class ProductsTest {
         productsSteps.clickContinueShopping();
         productsSteps.isProductDetailSectionVisible();
     }
+
+    @Test
+    public void searchFunctionReturnsResults() {
+        homeSteps.navigateToHomePage();
+        productsSteps.openProductsPage();
+        productsSteps.searchForProduct("Dress");
+        productsSteps.verifySearchResultsAreNotEmpty();
+    }
 }

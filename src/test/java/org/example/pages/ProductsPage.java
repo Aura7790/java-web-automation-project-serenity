@@ -46,6 +46,15 @@ public class ProductsPage extends PageObject {
     @FindBy(xpath = "//button[text()='Continue Shopping']")
     private WebElementFacade continueShoppingButton;
 
+    @FindBy(id = "search_product")
+    private WebElementFacade searchInput;
+
+    @FindBy(id = "submit_search")
+    private WebElementFacade searchButton;
+
+    @FindBy(css = ".features_items .product-image-wrapper")
+    private List<WebElementFacade> searchResults;
+
     public void clickProductsLink(){
         clickOn(productsLink);
     }
@@ -115,6 +124,23 @@ public class ProductsPage extends PageObject {
     public void clickContinueShoppingButton(){
         continueShoppingButton.isEnabled();
         clickOn(continueShoppingButton);
+    }
+
+    public void searchFor(String keyword) {
+        typeInto(searchInput, keyword);
+
+    }
+
+    public void clickSearchButton(){
+        clickOn(searchButton);
+    }
+
+    public boolean isSearchResultNotEmpty() {
+        return !searchResults.isEmpty();
+    }
+
+    public int getSearchResultCount() {
+        return searchResults.size();
     }
 
 }

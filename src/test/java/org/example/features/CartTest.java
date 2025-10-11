@@ -1,10 +1,12 @@
 package org.example.features;
 
+import com.sun.xml.bind.v2.TODO;
 import net.serenitybdd.annotations.Managed;
 import net.serenitybdd.annotations.Steps;
 import net.serenitybdd.junit.runners.SerenityRunner;
 import org.example.steps.CartSteps;
 import org.example.steps.HomeSteps;
+import org.example.steps.LoginSteps;
 import org.example.steps.ProductsSteps;
 import org.junit.Before;
 import org.junit.Test;
@@ -27,6 +29,9 @@ public class CartTest {
 
     @Steps
     private CartSteps cartSteps;
+
+    @Steps
+    private LoginSteps loginSteps;
 
     @Before
     public void maximizeBrowser() {
@@ -66,5 +71,29 @@ public class CartTest {
         cartSteps.openCartPage();
         cartSteps.checkCartPageUrl("https://automationexercise.com/view_cart");
         cartSteps.isCartInfoVisible();
+    }
+
+    @Test
+    public void checkProceedToCheckout(){
+        homeSteps.navigateToHomePage();
+        productsSteps.openProductsPage();
+        productsSteps.checkProductsListDisplayed();
+        productsSteps.scrollToFirstViewProduct();
+        productsSteps.clickViewFirstProductLink();
+        productsSteps.isProductDetailSectionVisible();
+        productsSteps.setProductQuantity("1");
+        productsSteps.clickAddToCartButton();
+        productsSteps.isCartModalVisible();
+        productsSteps.clickContinueShopping();
+        productsSteps.isProductDetailSectionVisible();
+        cartSteps.openCartPage();
+        cartSteps.isCartInfoVisible();
+        cartSteps.proceedToCheckout();
+        cartSteps.isCheckoutModalVisible();
+        cartSteps.checkCheckoutModalTitle("Checkout");
+        cartSteps.checkLoginRegisterLinkText("Register / Login");
+        cartSteps.checkContinueOnCartText("Continue On Cart");
+        cartSteps.goToRegisterLoginPage();
+        loginSteps.checkLoginHeading("Login to your account");
     }
 }
