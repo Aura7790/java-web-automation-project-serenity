@@ -1,40 +1,16 @@
 package org.example.features;
 
-import net.serenitybdd.annotations.Managed;
-import net.serenitybdd.annotations.Steps;
-import net.serenitybdd.junit.runners.SerenityRunner;
-import org.example.steps.ContactUsSteps;
-import org.example.steps.HomeSteps;
-import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.openqa.selenium.WebDriver;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-@RunWith(SerenityRunner.class)
-public class ContactUsTest {
-    private static final Logger log = LoggerFactory.getLogger(ContactUsTest.class);
-    @Managed(uniqueSession = true)
-    public WebDriver driver;
+import static org.example.utils.Constants.CONTACT_US_URL;
 
-    @Steps
-    private HomeSteps homeSteps;
-
-    @Steps
-    private ContactUsSteps contactUsSteps;
-
-    @Before
-    public void maximizeBrowser() {
-        driver.manage().window().maximize();
-    }
+public class ContactUsTest extends BaseTest{
 
     @Test
     public void contactUsPageUrl(){
         homeSteps.navigateToHomePage();
         contactUsSteps.openContactUsPage();
-        String contactUsUrl = "https://automationexercise.com/contact_us";
-        contactUsSteps.checkContactUsPageUrl(contactUsUrl);
+        contactUsSteps.checkContactUsPageUrl(CONTACT_US_URL);
     }
 
     @Test

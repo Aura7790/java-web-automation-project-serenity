@@ -1,20 +1,12 @@
 package org.example.steps;
 
 import net.serenitybdd.annotations.Step;
-import net.thucydides.core.steps.ScenarioSteps;
-import org.example.pages.AccountPage;
-import org.example.pages.HomePage;
-import org.example.pages.LoginPage;
 import org.junit.Assert;
 
-public class LoginSteps extends ScenarioSteps {
-    private HomePage homePage;
-    private LoginPage loginPage;
-    private AccountPage accountPage;
+public class LoginSteps extends BaseSteps {
 
     @Step
     public void navigateToRegisterLoginPage(){
-        homePage.open();
         homePage.clickOnCookiesConsent();
         homePage.clickOnSignupLoginLink();
     }
@@ -49,5 +41,10 @@ public class LoginSteps extends ScenarioSteps {
     @Step
     public void clickLogout(){
         accountPage.clickLogoutLink();
+    }
+
+    @Step
+    public void checkLoginFailed(){
+        loginPage.isLoginFailed();
     }
 }

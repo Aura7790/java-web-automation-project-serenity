@@ -1,12 +1,9 @@
 package org.example.steps;
 
 import net.serenitybdd.annotations.Step;
-import net.thucydides.core.steps.ScenarioSteps;
-import org.example.pages.ProductsPage;
 import org.junit.Assert;
 
-public class ProductsSteps extends ScenarioSteps {
-    private ProductsPage productsPage;
+public class ProductsSteps extends BaseSteps {
 
     @Step
     public void openProductsPage() {
@@ -87,18 +84,5 @@ public class ProductsSteps extends ScenarioSteps {
     @Step
     public void clickContinueShopping(){
         productsPage.clickContinueShoppingButton();
-    }
-
-    @Step
-    public void searchForProduct(String keyword) {
-        productsPage.searchFor(keyword);
-        productsPage.clickSearchButton();
-    }
-
-    @Step
-    public void verifySearchResultsAreNotEmpty() {
-        Assert.assertTrue(productsPage.isSearchResultNotEmpty());
-        Assert.assertNotEquals(0, productsPage.getSearchResultCount());
-        System.out.println("Search results found: " + productsPage.getSearchResultCount());
     }
 }

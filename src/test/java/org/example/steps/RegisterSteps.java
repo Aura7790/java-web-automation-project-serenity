@@ -1,12 +1,9 @@
 package org.example.steps;
 
 import net.serenitybdd.annotations.Step;
-import net.thucydides.core.steps.ScenarioSteps;
-import org.example.pages.RegisterPage;
 import org.junit.Assert;
 
-public class RegisterSteps extends ScenarioSteps {
-    private RegisterPage registerPage;
+public class RegisterSteps extends BaseSteps {
 
     @Step
     public void checkSignupHeading(String headingText){

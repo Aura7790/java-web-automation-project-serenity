@@ -1,39 +1,35 @@
 package org.example.features;
 
-import net.serenitybdd.annotations.Managed;
-import net.serenitybdd.annotations.Steps;
-import net.serenitybdd.junit.runners.SerenityRunner;
-import org.example.steps.LoginSteps;
-import org.junit.Before;
+import org.example.utils.TestDataGenerator;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.openqa.selenium.WebDriver;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-@RunWith(SerenityRunner.class)
-public class LoginTest {
-    private static final Logger log = LoggerFactory.getLogger(LoginTest.class);
-    @Managed(uniqueSession = true)
-    public WebDriver driver;
+import static org.example.utils.Constants.*;
 
-    @Steps
-    private LoginSteps loginSteps;
+public class LoginTest extends BaseTest{
 
-    @Before
-    public void maximizeBrowser() {
-        driver.manage().window().maximize();
-    }
+    TestDataGenerator dataGenerator = new TestDataGenerator();
+    private final String uniqueEmail = dataGenerator.generateUniqueEmail();
+    private final String uniquePassword = dataGenerator.generateUniquePassword();
 
     @Test
     public void loginWithValidCredentials() {
         loginSteps.navigateToRegisterLoginPage();
         loginSteps.checkLoginHeading("Login to your account");
-        loginSteps.setUserEmail("test171@gmail.com");
-        loginSteps.setUserPassword("test1234#");
+        loginSteps.setUserEmail(USER_EMAIL);
+        loginSteps.setUserPassword(USER_PASSWORD);
         loginSteps.clickLogin();
-        loginSteps.userIsLoggedIn("test");
+        loginSteps.userIsLoggedIn(USER_NAME);
         loginSteps.clickLogout();
+    }
+
+    @Test
+    public void loginWithNotRegisteredUser(){
+        loginSteps.navigateToRegisterLoginPage();
+        loginSteps.checkLoginHeading("Login to your account");
+        loginSteps.setUserEmail(uniqueEmail);
+        loginSteps.setUserPassword(uniquePassword);
+        loginSteps.clickLogin();
+        loginSteps.checkLoginFailed();
     }
 
 }

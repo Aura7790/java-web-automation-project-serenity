@@ -1,11 +1,9 @@
 package org.example.pages;
 
 import net.serenitybdd.core.annotations.findby.FindBy;
-import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 
-
-public class LoginPage extends PageObject {
+public class LoginPage extends BasePage {
     @FindBy(xpath = "//h2[text()='Login to your account']")
     private WebElementFacade loginHeading;
 
@@ -37,8 +35,8 @@ public class LoginPage extends PageObject {
         clickOn(loginButton);
     }
 
-    public boolean isLoginFailed(){
-        return failedLogin.isDisplayed();
+    public void isLoginFailed(){
+       failedLogin.isDisplayed();
     }
 
 }

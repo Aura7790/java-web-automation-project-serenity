@@ -1,10 +1,10 @@
 package org.example.pages;
 
 import net.serenitybdd.core.annotations.findby.FindBy;
-import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
+import java.util.List;
 
-public class CartPage extends PageObject {
+public class CartPage extends BasePage {
     @FindBy(css = ".cart_info")
     private WebElementFacade cartInfo;
 
@@ -25,6 +25,15 @@ public class CartPage extends PageObject {
 
     @FindBy(xpath = "//button[text()='Continue On Cart']")
     private WebElementFacade continueOnCartButton;
+
+    @FindBy(css = "a.cart_quantity_delete")
+    private WebElementFacade deleteButton;
+
+    @FindBy(css = ".cart_info tbody tr")
+    private List<WebElementFacade> cartItems;
+
+    @FindBy(id = "empty_cart")
+    private WebElementFacade emptyCart;
 
     public boolean isCartInfoDisplayed(){
         cartInfo.waitUntilVisible();
@@ -63,5 +72,15 @@ public class CartPage extends PageObject {
 
     public void clickContinueOnCartButton(){
         clickOn(continueOnCartButton);
+    }
+
+    public void deleteFirstProductFromCart() {
+        if (!cartItems.isEmpty()) {
+            deleteButton.click();
+        }
+    }
+
+    public String getCartEmptyText(){
+        return emptyCart.getText();
     }
 }

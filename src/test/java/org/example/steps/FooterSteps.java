@@ -1,12 +1,9 @@
 package org.example.steps;
 
 import net.serenitybdd.annotations.Step;
-import net.thucydides.core.steps.ScenarioSteps;
-import org.example.pages.FooterPage;
 import org.junit.Assert;
 
-public class FooterSteps extends ScenarioSteps {
-    private FooterPage footerPage;
+public class FooterSteps extends BaseSteps {
 
     @Step
     public void enterFooterEmail(String email) {

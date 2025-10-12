@@ -2,13 +2,12 @@ package org.example.pages;
 
 import net.serenitybdd.core.annotations.findby.By;
 import net.serenitybdd.core.annotations.findby.FindBy;
-import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 import org.openqa.selenium.WebElement;
 
 import java.util.Objects;
 
-public class RegisterPage extends PageObject {
+public class RegisterPage extends BasePage {
     @FindBy(xpath= "//h2[text()='New User Signup!']")
     private WebElementFacade signupHeading;
 

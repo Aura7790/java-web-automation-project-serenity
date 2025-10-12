@@ -1,16 +1,12 @@
 package org.example.steps;
 
 import net.serenitybdd.annotations.Step;
-import net.thucydides.core.steps.ScenarioSteps;
-import org.example.pages.HomePage;
 import org.junit.Assert;
 
-public class HomeSteps extends ScenarioSteps {
-    private HomePage homePage;
+public class HomeSteps extends BaseSteps {
 
     @Step
     public void navigateToHomePage(){
-        homePage.open();
         homePage.clickOnCookiesConsent();
     }
 

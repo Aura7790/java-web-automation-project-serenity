@@ -1,12 +1,11 @@
 package org.example.pages;
 
 import net.serenitybdd.core.annotations.findby.FindBy;
-import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 import org.openqa.selenium.JavascriptExecutor;
 import java.util.List;
 
-public class ProductsPage extends PageObject {
+public class ProductsPage extends BasePage {
     @FindBy(xpath = "//a[contains(text(), 'Products')]")
     private WebElementFacade productsLink;
 
@@ -57,10 +56,6 @@ public class ProductsPage extends PageObject {
 
     public void clickProductsLink(){
         clickOn(productsLink);
-    }
-
-    public String getCurrentUrl(){
-        return getDriver().getCurrentUrl();
     }
 
     public boolean isProductListVisible() {

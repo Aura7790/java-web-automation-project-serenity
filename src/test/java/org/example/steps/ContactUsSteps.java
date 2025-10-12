@@ -1,14 +1,9 @@
 package org.example.steps;
 
 import net.serenitybdd.annotations.Step;
-import net.thucydides.core.steps.ScenarioSteps;
-import org.example.pages.ContactUsPage;
-import org.example.pages.ProductsPage;
 import org.junit.Assert;
 
-public class ContactUsSteps extends ScenarioSteps {
-    private ContactUsPage contactUsPage;
-    private ProductsPage productsPage;
+public class ContactUsSteps extends BaseSteps {
 
     @Step
     public void openContactUsPage(){

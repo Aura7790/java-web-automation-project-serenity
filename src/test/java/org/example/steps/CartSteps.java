@@ -1,14 +1,9 @@
 package org.example.steps;
 
 import net.serenitybdd.annotations.Step;
-import net.thucydides.core.steps.ScenarioSteps;
-import org.example.pages.CartPage;
-import org.example.pages.ProductsPage;
 import org.junit.Assert;
 
-public class CartSteps extends ScenarioSteps {
-    private CartPage cartPage;
-    private ProductsPage productsPage;
+public class CartSteps extends BaseSteps {
 
     @Step
     public void checkCartPageUrl(String url){
@@ -58,6 +53,16 @@ public class CartSteps extends ScenarioSteps {
     @Step
     public void continueOnCart(){
         cartPage.clickContinueOnCartButton();
+    }
+
+    @Step
+    public void deleteProductFromCart() {
+        cartPage.deleteFirstProductFromCart();
+    }
+
+    @Step
+    public void checkCartEmptyText(String expected_text){
+        Assert.assertEquals(cartPage.getCartEmptyText(), expected_text);
     }
 
 }
