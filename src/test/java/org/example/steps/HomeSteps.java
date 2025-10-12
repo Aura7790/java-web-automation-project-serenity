@@ -6,7 +6,7 @@ import org.junit.Assert;
 public class HomeSteps extends BaseSteps {
 
     @Step
-    public void navigateToHomePage(){
+    public void acceptCookies(){
         homePage.clickOnCookiesConsent();
     }
 

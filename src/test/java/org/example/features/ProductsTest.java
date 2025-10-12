@@ -8,14 +8,14 @@ public class ProductsTest extends BaseTest{
 
     @Test
     public void productsPageUrlContainsProducts(){
-        homeSteps.navigateToHomePage();
+        homeSteps.acceptCookies();
         productsSteps.openProductsPage();
         productsSteps.checkProductsPageUrl(PRODUCTS_URL);
     }
 
     @Test
     public void productsListLoadsSuccessfully(){
-        homeSteps.navigateToHomePage();
+        homeSteps.acceptCookies();
         productsSteps.openProductsPage();
         productsSteps.checkProductsListDisplayed();
         productsSteps.checkProductsPageContentNotEmpty();
@@ -23,7 +23,7 @@ public class ProductsTest extends BaseTest{
 
     @Test
     public void productDetailPageOpens(){
-        homeSteps.navigateToHomePage();
+        homeSteps.acceptCookies();
         productsSteps.openProductsPage();
         productsSteps.checkProductsListDisplayed();
         productsSteps.scrollToFirstViewProduct();
@@ -35,7 +35,7 @@ public class ProductsTest extends BaseTest{
 
     @Test
     public void addProductToCartWithValidQty(){
-        homeSteps.navigateToHomePage();
+        homeSteps.acceptCookies();
         productsSteps.openProductsPage();
         productsSteps.checkProductsListDisplayed();
         productsSteps.scrollToFirstViewProduct();

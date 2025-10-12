@@ -6,7 +6,7 @@ public class HomeTest extends BaseTest{
 
     @Test
     public void checkLogoIsDisplayedOnHomePage() {
-        homeSteps.navigateToHomePage();
+        homeSteps.acceptCookies();
         homeSteps.checkLogoOnHomePage();
     }
 }

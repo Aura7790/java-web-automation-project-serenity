@@ -8,14 +8,14 @@ public class ContactUsTest extends BaseTest{
 
     @Test
     public void contactUsPageUrl(){
-        homeSteps.navigateToHomePage();
+        homeSteps.acceptCookies();
         contactUsSteps.openContactUsPage();
         contactUsSteps.checkContactUsPageUrl(CONTACT_US_URL);
     }
 
     @Test
     public void contactUsFormSubmitWithValidData(){
-        homeSteps.navigateToHomePage();
+        homeSteps.acceptCookies();
         contactUsSteps.openContactUsPage();
         contactUsSteps.isContactUsFormVisible();
         contactUsSteps.fillInNameField("John Doe");

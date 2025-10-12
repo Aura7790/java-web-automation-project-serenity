@@ -7,7 +7,7 @@ public class CartTest extends BaseTest {
 
     @Test
     public void checkCartAfterClickOnViewCart(){
-        homeSteps.navigateToHomePage();
+        homeSteps.acceptCookies();
         productsSteps.openProductsPage();
         productsSteps.checkProductsListDisplayed();
         productsSteps.scrollToFirstViewProduct();
@@ -23,7 +23,7 @@ public class CartTest extends BaseTest {
 
     @Test
     public void checkCartAfterClickOnCartLink(){
-        homeSteps.navigateToHomePage();
+        homeSteps.acceptCookies();
         productsSteps.openProductsPage();
         productsSteps.checkProductsListDisplayed();
         productsSteps.scrollToFirstViewProduct();
@@ -41,7 +41,7 @@ public class CartTest extends BaseTest {
 
     @Test
     public void checkProceedToCheckout(){
-        homeSteps.navigateToHomePage();
+        homeSteps.acceptCookies();
         productsSteps.openProductsPage();
         productsSteps.checkProductsListDisplayed();
         productsSteps.scrollToFirstViewProduct();
@@ -65,7 +65,7 @@ public class CartTest extends BaseTest {
 
     @Test
     public void deleteProductFromCart() {
-        homeSteps.navigateToHomePage();
+        homeSteps.acceptCookies();
         productsSteps.openProductsPage();
         productsSteps.checkProductsListDisplayed();
         productsSteps.scrollToFirstViewProduct();

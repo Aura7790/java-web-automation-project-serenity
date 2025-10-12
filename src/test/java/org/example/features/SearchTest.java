@@ -5,7 +5,7 @@ import org.junit.Test;
 public class SearchTest extends BaseTest{
     @Test
     public void searchFunctionReturnsResults() {
-        homeSteps.navigateToHomePage();
+        homeSteps.acceptCookies();
         productsSteps.openProductsPage();
         searchSteps.searchForProduct("Dress");
         searchSteps.verifySearchResultsAreNotEmpty();
@@ -13,7 +13,7 @@ public class SearchTest extends BaseTest{
 
     @Test
     public void searchForProductKeyword(){
-        homeSteps.navigateToHomePage();
+        homeSteps.acceptCookies();
         productsSteps.openProductsPage();
         searchSteps.searchForProduct("top");
         searchSteps.checkProductIsInResults("Blue Top");
@@ -21,7 +21,7 @@ public class SearchTest extends BaseTest{
 
     @Test
     public void searchForProductFullName(){
-        homeSteps.navigateToHomePage();
+        homeSteps.acceptCookies();
         productsSteps.openProductsPage();
         searchSteps.searchForProduct("Stylish Dress");
         searchSteps.checkProductIsInResults("Stylish Dress");
