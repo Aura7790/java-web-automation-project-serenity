@@ -67,4 +67,23 @@ public class RegisterSteps extends BaseSteps {
     public void clickContinue(){
         registerPage.clickContinueButton();
     }
+
+    @Step
+    public void checkEmailAlreadyExistsMessage(String message){
+        Assert.assertEquals(registerPage.getEmailAlreadyExistsText(), message);
+    }
+
+    @Step
+    public void checkNameFieldEmptyMessage(String message){
+        String validationMessage = registerPage.getNameFieldValidationMessage();
+        System.out.println("Validation Message: " + validationMessage);
+        Assert.assertTrue("Expected browser validation message", validationMessage.toLowerCase().contains(message));
+    }
+
+    @Step
+    public void checkEmailFieldErrorMessage(String message){
+        String validationMessage = registerPage.getEmailFieldValidationMessage();
+        System.out.println("Validation Message: " + validationMessage);
+        Assert.assertTrue("Expected browser validation message", validationMessage.toLowerCase().contains(message));
+    }
 }

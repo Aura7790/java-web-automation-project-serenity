@@ -3,6 +3,7 @@ package org.example.pages;
 import net.serenitybdd.core.annotations.findby.By;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.WebElementFacade;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
 import java.util.Objects;
@@ -92,6 +93,9 @@ public class RegisterPage extends BasePage {
     @FindBy(xpath = "//a[@data-qa='continue-button']")
     private WebElementFacade continueButton;
 
+    @FindBy(xpath = "//p[contains(text(),'Email Address already exist!')]")
+    private WebElementFacade existingEmailError;
+
     public String getSignupHeadingText(){
         return signupHeading.getText();
     }
@@ -169,5 +173,18 @@ public class RegisterPage extends BasePage {
     public void clickContinueButton(){
         clickOn(continueButton);
     }
+
+    public String getEmailAlreadyExistsText(){
+        return existingEmailError.getText();
+    }
+
+    public String getNameFieldValidationMessage() {
+        return getValidationMessageFor(nameField);
+    }
+
+    public String getEmailFieldValidationMessage() {
+        return getValidationMessageFor(emailField);
+    }
+
 }
 

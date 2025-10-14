@@ -35,8 +35,17 @@ public class LoginPage extends BasePage {
         clickOn(loginButton);
     }
 
-    public void isLoginFailed(){
-       failedLogin.isDisplayed();
+    public String getLoginFailedMessage(){
+        waitFor(failedLogin);
+        return failedLogin.getText();
+    }
+
+    public String getEmailFieldValidationMessage() {
+        return getValidationMessageFor(emailField);
+    }
+
+    public String getPasswordFieldValidationMessage() {
+        return getValidationMessageFor(passwordField);
     }
 
 }

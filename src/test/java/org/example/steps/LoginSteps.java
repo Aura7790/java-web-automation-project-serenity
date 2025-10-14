@@ -44,7 +44,23 @@ public class LoginSteps extends BaseSteps {
     }
 
     @Step
-    public void checkLoginFailed(){
-        loginPage.isLoginFailed();
+    public void checkLoginFailedMessage(String expectedFailedMessage){
+        Assert.assertEquals(expectedFailedMessage, loginPage.getLoginFailedMessage());
     }
+
+    @Step
+    public void checkPasswordFieldEmptyMessage(String message){
+        String validationMessage = loginPage.getPasswordFieldValidationMessage();
+        System.out.println("Validation Message: " + validationMessage);
+        Assert.assertTrue("Expected browser validation message", validationMessage.toLowerCase().contains(message));
+    }
+
+    @Step
+    public void checkEmailFieldErrorMessage(String message){
+        String validationMessage = loginPage.getEmailFieldValidationMessage();
+        System.out.println("Validation Message: " + validationMessage);
+        Assert.assertTrue("Expected browser validation message", validationMessage.toLowerCase().contains(message));
+    }
+
+
 }
