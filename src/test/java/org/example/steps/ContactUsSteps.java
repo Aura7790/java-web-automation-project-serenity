@@ -7,6 +7,7 @@ public class ContactUsSteps extends BaseSteps {
 
     @Step
     public void openContactUsPage(){
+        homePage.clickOnCookiesConsent();
         contactUsPage.clickContactUsLink();
     }
 

@@ -8,14 +8,12 @@ public class ProductsTest extends BaseTest{
 
     @Test
     public void productsPageUrlContainsProducts(){
-        homeSteps.acceptCookies();
         productsSteps.openProductsPage();
         productsSteps.checkProductsPageUrl(PRODUCTS_URL);
     }
 
     @Test
     public void productsListLoadsSuccessfully(){
-        homeSteps.acceptCookies();
         productsSteps.openProductsPage();
         productsSteps.checkProductsListDisplayed();
         productsSteps.checkProductsPageContentNotEmpty();
@@ -23,7 +21,6 @@ public class ProductsTest extends BaseTest{
 
     @Test
     public void productDetailPageOpens(){
-        homeSteps.acceptCookies();
         productsSteps.openProductsPage();
         productsSteps.checkProductsListDisplayed();
         productsSteps.scrollToFirstViewProduct();
@@ -35,18 +32,64 @@ public class ProductsTest extends BaseTest{
 
     @Test
     public void addProductToCartWithValidQty(){
-        homeSteps.acceptCookies();
         productsSteps.openProductsPage();
         productsSteps.checkProductsListDisplayed();
         productsSteps.scrollToFirstViewProduct();
         productsSteps.clickViewFirstProductLink();
         productsSteps.isProductDetailSectionVisible();
-        productsSteps.setProductQuantity("1");
+        productsSteps.setProductQuantity(1);
         productsSteps.clickAddToCartButton();
         productsSteps.isCartModalVisible();
         productsSteps.checkModalTitleText("Added!");
         productsSteps.checkModalSubtitleText("Your product has been added to cart.");
         productsSteps.clickContinueShopping();
         productsSteps.isProductDetailSectionVisible();
+    }
+
+    @Test
+    public void checkPriceIsDisplayedForAllProducts(){
+        productsSteps.openProductsPage();
+        productsSteps.checkProductsListDisplayed();
+        productsSteps.scrollToFirstViewProduct();
+        productsSteps.checkAllProductsHavePrices();
+    }
+
+    @Test
+    public void verifyProductPriceMatchesBetweenListingAndCart() {
+        productsSteps.openProductsPage();
+        productsSteps.checkProductsListDisplayed();
+        productsSteps.scrollToFirstViewProduct();
+        String productPriceOnListing = productsSteps.getFirstProductPriceFromListing();
+        productsSteps.clickViewFirstProductLink();
+        productsSteps.isProductDetailSectionVisible();
+        productsSteps.setProductQuantity(1);
+        productsSteps.addFirstProductToCartAndContinue();
+        cartSteps.openCartPage();
+        cartSteps.isCartInfoVisible();
+        productsSteps.checkPriceMatchesInCart(productPriceOnListing);
+    }
+
+    @Test
+    public void checkUIHeaderChangesAfterFiltering() {
+        productsSteps.openProductsPage();
+        productsSteps.checkProductsListDisplayed();
+        productsSteps.filterByDressCategory();
+        productsSteps.checkHeaderContains("WOMEN - DRESS PRODUCTS");
+    }
+
+    @Test
+    public void checkFilteredProductsMatchCategory() {
+        productsSteps.openProductsPage();
+        productsSteps.checkProductsListDisplayed();
+        productsSteps.filterByDressCategory();
+        productsSteps.checkProductNamesContainCategory("Dress");
+    }
+
+    @Test
+    public void checkDynamicFilterByCategory(){
+        productsSteps.openProductsPage();
+        productsSteps.checkProductsListDisplayed();
+        productsSteps.filterByCategory("Women", "Dress");
+        productsSteps.checkHeaderContains("WOMEN - DRESS PRODUCTS");
     }
 }

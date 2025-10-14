@@ -26,7 +26,7 @@ public class CartPage extends BasePage {
     @FindBy(xpath = "//button[text()='Continue On Cart']")
     private WebElementFacade continueOnCartButton;
 
-    @FindBy(css = "a.cart_quantity_delete")
+    @FindBy(css = ".cart_quantity_delete")
     private WebElementFacade deleteButton;
 
     @FindBy(css = ".cart_info tbody tr")
@@ -34,6 +34,9 @@ public class CartPage extends BasePage {
 
     @FindBy(id = "empty_cart")
     private WebElementFacade emptyCart;
+
+    @FindBy(css = ".cart_total_price")
+    private WebElementFacade cartTotalPrice;
 
     public boolean isCartInfoDisplayed(){
         cartInfo.waitUntilVisible();
@@ -76,11 +79,20 @@ public class CartPage extends BasePage {
 
     public void deleteFirstProductFromCart() {
         if (!cartItems.isEmpty()) {
-            deleteButton.click();
+            clickOn(deleteButton);
         }
     }
 
     public String getCartEmptyText(){
         return emptyCart.getText();
+    }
+
+    public String getFirstCartProductPrice() {
+        return cartTotalPrice.getText().trim();
+    }
+
+    public int getCartTotalPrice() {
+        String totalText = cartTotalPrice.getText().replaceAll("[^0-9]", "").trim();
+        return Integer.parseInt(totalText);
     }
 }

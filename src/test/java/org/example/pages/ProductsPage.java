@@ -1,8 +1,12 @@
 package org.example.pages;
 
+import net.serenitybdd.core.annotations.findby.By;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.WebElementFacade;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductsPage extends BasePage {
@@ -54,6 +58,25 @@ public class ProductsPage extends BasePage {
     @FindBy(css = ".features_items .product-image-wrapper")
     private List<WebElementFacade> searchResults;
 
+    @FindBy(css = ".features_items .productinfo h2")
+    private List<WebElementFacade> productPrices;
+
+    @FindBy(xpath = "//*[contains(text(),'Rs.')]")
+    private WebElementFacade productDetailPrice;
+
+    // Category: Women > Dress
+    @FindBy(xpath = "//a[@href='#Women']")
+    private WebElementFacade womenCategory;
+
+    @FindBy(xpath = "//div[@id='Women']//a[contains(text(),'Dress')]")
+    private WebElementFacade womenDressSubcategory;
+
+    @FindBy(xpath = "//h2[@class='title text-center']")
+    private WebElementFacade productsHeader;
+
+    @FindBy(css = ".features_items .productinfo p")
+    private List<WebElementFacade> productNames;
+
     public void clickProductsLink(){
         clickOn(productsLink);
     }
@@ -69,6 +92,19 @@ public class ProductsPage extends BasePage {
     public void scrollToViewProductButton(){
         ((JavascriptExecutor) getDriver())
                 .executeScript("arguments[0].scrollIntoView(true);", firstViewProductLink);
+    }
+
+    public void scrollPageUntilVisible(WebElement element) {
+        int maxScrolls = 10;
+        int scrollIncrement = 300;
+
+        for (int i = 0; i < maxScrolls; i++) {
+            if (element.isDisplayed()) {
+                break;
+            }
+            evaluateJavascript("window.scrollBy(0, arguments[0]);", scrollIncrement);
+            waitABit(300);
+        }
     }
 
     public void clickViewProductLink(){
@@ -90,11 +126,12 @@ public class ProductsPage extends BasePage {
         return reviewSection.isDisplayed();
     }
 
-    public void setProductQuantity(String qty){
-        typeInto(productQuantity, qty);
+    public void setProductQuantity(int qty){
+        productQuantity.clear();
+        typeInto(productQuantity, String.valueOf(qty));
     }
 
-    public void addProductToCart(){
+    public void addFirstProductToCart(){
         firstAddToCartButton.isEnabled();
         clickOn(firstAddToCartButton);
     }
@@ -138,4 +175,46 @@ public class ProductsPage extends BasePage {
         return searchResults.size();
     }
 
+    public List<WebElementFacade> getAllProductPrices() {
+        return productPrices;
+    }
+
+    public void addFirstProductToCartAndContinue() {
+        clickOn(firstAddToCartButton);
+        clickOn(waitFor(continueShoppingButton));
+    }
+
+    public int getUnitPrice() {
+        // Example price: "Rs. 500"
+        String priceText = productDetailPrice.getText().replaceAll("[^0-9]", "").trim();
+        return Integer.parseInt(priceText);
+    }
+
+    public void filterByWomenDressCategory() {
+        clickOn(womenCategory);
+        clickOn(waitFor(womenDressSubcategory));
+    }
+
+    public String getFilterHeaderText() {
+        return productsHeader.getText().trim(); // e.g., "WOMEN - DRESS PRODUCTS"
+    }
+
+    public List<String> getFilteredProductNames() {
+        List<String> names = new ArrayList<>();
+        for (WebElement product : productNames) {
+            String name = product.getText().trim();
+            if (!name.isEmpty()) {
+                names.add(name);
+            }
+        }
+        return names;
+    }
+
+    public void filterByCategory(String mainCategory, String subCategory) {
+        WebElementFacade mainCategoryElement = find(By.xpath("//a[@href='#" + mainCategory + "']"));
+        clickOn(mainCategoryElement);
+
+        WebElementFacade subCategoryElement = find(By.xpath("//div[@id='Women']//a[contains(text(), '" + subCategory + "')]"));
+        clickOn(waitFor(subCategoryElement));
+    }
 }

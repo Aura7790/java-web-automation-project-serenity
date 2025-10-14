@@ -12,7 +12,6 @@ public class FooterTest extends BaseTest {
 
     @Test
     public void footerSubscriptionWithValidEmail() {
-        homeSteps.acceptCookies();
         productsSteps.openProductsPage();
         footerSteps.enterFooterEmail(uniqueEmail);
         footerSteps.clickFooterSubscribe();

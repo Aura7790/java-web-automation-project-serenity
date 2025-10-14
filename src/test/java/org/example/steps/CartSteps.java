@@ -65,4 +65,21 @@ public class CartSteps extends BaseSteps {
         Assert.assertEquals(cartPage.getCartEmptyText(), expected_text);
     }
 
+    @Step
+    public void addProductToCartWithQuantity(int qty) {
+        productsPage.scrollToViewProductButton();
+        productsPage.clickViewProductLink();
+        productsPage.isProductDetailsDisplayed();
+        productsPage.setProductQuantity(qty);
+        productsPage.addFirstProductToCartAndContinue();
+    }
+
+    @Step
+    public void checkTotalPriceMatchesQuantityAndUnit(int qty) {
+        int unitPrice = productsPage.getUnitPrice();
+        int totalPrice = cartPage.getCartTotalPrice();
+        int expectedTotal = unitPrice * qty;
+        Assert.assertEquals(totalPrice, expectedTotal);
+    }
+
 }

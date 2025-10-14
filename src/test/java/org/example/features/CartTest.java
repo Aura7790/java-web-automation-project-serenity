@@ -7,13 +7,12 @@ public class CartTest extends BaseTest {
 
     @Test
     public void checkCartAfterClickOnViewCart(){
-        homeSteps.acceptCookies();
         productsSteps.openProductsPage();
         productsSteps.checkProductsListDisplayed();
         productsSteps.scrollToFirstViewProduct();
         productsSteps.clickViewFirstProductLink();
         productsSteps.isProductDetailSectionVisible();
-        productsSteps.setProductQuantity("1");
+        productsSteps.setProductQuantity(1);
         productsSteps.clickAddToCartButton();
         productsSteps.isCartModalVisible();
         productsSteps.clickViewCart();
@@ -23,16 +22,13 @@ public class CartTest extends BaseTest {
 
     @Test
     public void checkCartAfterClickOnCartLink(){
-        homeSteps.acceptCookies();
         productsSteps.openProductsPage();
         productsSteps.checkProductsListDisplayed();
         productsSteps.scrollToFirstViewProduct();
         productsSteps.clickViewFirstProductLink();
         productsSteps.isProductDetailSectionVisible();
-        productsSteps.setProductQuantity("1");
-        productsSteps.clickAddToCartButton();
-        productsSteps.isCartModalVisible();
-        productsSteps.clickContinueShopping();
+        productsSteps.setProductQuantity(1);
+        productsSteps.addFirstProductToCartAndContinue();
         productsSteps.isProductDetailSectionVisible();
         cartSteps.openCartPage();
         cartSteps.checkCartPageUrl(CART_URL);
@@ -41,16 +37,13 @@ public class CartTest extends BaseTest {
 
     @Test
     public void checkProceedToCheckout(){
-        homeSteps.acceptCookies();
         productsSteps.openProductsPage();
         productsSteps.checkProductsListDisplayed();
         productsSteps.scrollToFirstViewProduct();
         productsSteps.clickViewFirstProductLink();
         productsSteps.isProductDetailSectionVisible();
-        productsSteps.setProductQuantity("1");
-        productsSteps.clickAddToCartButton();
-        productsSteps.isCartModalVisible();
-        productsSteps.clickContinueShopping();
+        productsSteps.setProductQuantity(1);
+        productsSteps.addFirstProductToCartAndContinue();
         productsSteps.isProductDetailSectionVisible();
         cartSteps.openCartPage();
         cartSteps.isCartInfoVisible();
@@ -65,17 +58,27 @@ public class CartTest extends BaseTest {
 
     @Test
     public void deleteProductFromCart() {
-        homeSteps.acceptCookies();
         productsSteps.openProductsPage();
         productsSteps.checkProductsListDisplayed();
         productsSteps.scrollToFirstViewProduct();
         productsSteps.clickViewFirstProductLink();
         productsSteps.isProductDetailSectionVisible();
-        productsSteps.setProductQuantity("1");
+        productsSteps.setProductQuantity(1);
         productsSteps.clickAddToCartButton();
         productsSteps.isCartModalVisible();
         productsSteps.clickViewCart();
         cartSteps.deleteProductFromCart();
         cartSteps.checkCartEmptyText("Cart is empty! Click here to buy products.");
+    }
+
+    @Test
+    public void  checkCartTotalUpdatesCorrectlyWithQuantity() {
+        productsSteps.openProductsPage();
+        productsSteps.checkProductsListDisplayed();
+        cartSteps.addProductToCartWithQuantity(3);
+        productsSteps.isProductDetailSectionVisible();
+        cartSteps.openCartPage();
+        cartSteps.isCartInfoVisible();
+        cartSteps.checkTotalPriceMatchesQuantityAndUnit(3);
     }
 }
