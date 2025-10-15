@@ -95,6 +95,15 @@ public class ProductsSteps extends BaseSteps {
         productsPage.addFirstProductToCartAndContinue();
     }
 
+    @Step
+    public void addProductToCartWithQuantity(int qty) {
+        productsPage.scrollToViewProductButton();
+        productsPage.clickViewProductLink();
+        productsPage.isProductDetailsDisplayed();
+        productsPage.setProductQuantity(qty);
+        productsPage.addFirstProductToCartAndContinue();
+    }
+
     @Step()
     public void checkAllProductsHavePrices() {
         List<WebElementFacade> prices = productsPage.getAllProductPrices();
@@ -144,5 +153,17 @@ public class ProductsSteps extends BaseSteps {
     @Step
     public void filterByCategory(String mainCategory, String subCategory) {
         productsPage.filterByCategory(mainCategory, subCategory);
+    }
+
+    @Step
+    public void searchForProductAndAddToCart(String productName, int productQuantity){
+        productsPage.clickProductsLink();
+        productsPage.searchFor(productName);
+        productsPage.clickSearchButton();
+        productsPage.scrollToViewProductButton();
+        productsPage.clickViewProductLink();
+        productsPage.setProductQuantity(productQuantity);
+        productsPage.addFirstProductToCart();
+        productsPage.clickViewCartLink();
     }
 }

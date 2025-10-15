@@ -39,7 +39,7 @@ public class LoginSteps extends BaseSteps {
     }
 
     @Step
-    public void clickLogout(){
+    public void logoutUser(){
         accountPage.clickLogoutLink();
     }
 
@@ -62,5 +62,13 @@ public class LoginSteps extends BaseSteps {
         Assert.assertTrue("Expected browser validation message", validationMessage.toLowerCase().contains(message));
     }
 
+    @Step
+    public void loginWithExistentUser(String email, String password, String username){
+        loginPage.setEmailField(email);
+        loginPage.setPasswordField(password);
+        loginPage.clickLoginButton();
+        accountPage.isLogoutLinkVisible();
+        Assert.assertEquals("Logged in as " + username, accountPage.getLoggedInText(username));
+    }
 
 }

@@ -38,6 +38,9 @@ public class CartPage extends BasePage {
     @FindBy(css = ".cart_total_price")
     private WebElementFacade cartTotalPrice;
 
+    @FindBy(xpath = "//a[contains(text(), 'T-Shirt')]")
+    private WebElementFacade productId28;
+
     public boolean isCartInfoDisplayed(){
         cartInfo.waitUntilVisible();
         return cartInfo.isDisplayed();
@@ -81,6 +84,10 @@ public class CartPage extends BasePage {
         if (!cartItems.isEmpty()) {
             clickOn(deleteButton);
         }
+    }
+
+    public String checkProductId28Text() {
+        return productId28.getText();
     }
 
     public String getCartEmptyText(){

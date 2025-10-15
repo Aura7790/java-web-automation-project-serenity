@@ -32,7 +32,7 @@ public class RegisterTest extends BaseTest {
         registerSteps.checkAccountCreatedMessage();
         registerSteps.clickContinue();
         loginSteps.userIsLoggedIn(uniqueName);
-        loginSteps.clickLogout();
+        loginSteps.logoutUser();
     }
 
     @Test

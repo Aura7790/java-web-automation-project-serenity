@@ -1,9 +1,13 @@
 package org.example.features;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import static org.example.utils.Constants.CART_URL;
+import static org.example.utils.Constants.*;
 
 public class CartTest extends BaseTest {
+    private static final Logger log = LoggerFactory.getLogger(CartTest.class);
+    private final String cartEmptyText = "Cart is empty! Click here to buy products.";
 
     @Test
     public void checkCartAfterClickOnViewCart(){
@@ -68,17 +72,27 @@ public class CartTest extends BaseTest {
         productsSteps.isCartModalVisible();
         productsSteps.clickViewCart();
         cartSteps.deleteProductFromCart();
-        cartSteps.checkCartEmptyText("Cart is empty! Click here to buy products.");
+        cartSteps.checkCartEmptyText(cartEmptyText);
     }
 
     @Test
     public void  checkCartTotalUpdatesCorrectlyWithQuantity() {
         productsSteps.openProductsPage();
         productsSteps.checkProductsListDisplayed();
-        cartSteps.addProductToCartWithQuantity(3);
+        productsSteps.addProductToCartWithQuantity(3);
         productsSteps.isProductDetailSectionVisible();
         cartSteps.openCartPage();
         cartSteps.isCartInfoVisible();
         cartSteps.checkTotalPriceMatchesQuantityAndUnit(3);
+    }
+
+    @Test
+    public void loginSearchAddToCartDeleteAndLogout() {
+        loginSteps.navigateToRegisterLoginPage();
+        loginSteps.loginWithExistentUser(USER_EMAIL, USER_PASSWORD, USER_NAME);
+        productsSteps.searchForProductAndAddToCart("T-Shirt", 1);
+        cartSteps.checkProductAddedIsInCart();
+        cartSteps.deleteProductAndCheckCartEmpty(cartEmptyText);
+        loginSteps.logoutUser();
     }
 }

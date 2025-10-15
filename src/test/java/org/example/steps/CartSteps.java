@@ -61,17 +61,13 @@ public class CartSteps extends BaseSteps {
     }
 
     @Step
-    public void checkCartEmptyText(String expected_text){
-        Assert.assertEquals(cartPage.getCartEmptyText(), expected_text);
+    public void checkProductAddedIsInCart(){
+        Assert.assertTrue(cartPage.checkProductId28Text().contains("T-Shirt"));
     }
 
     @Step
-    public void addProductToCartWithQuantity(int qty) {
-        productsPage.scrollToViewProductButton();
-        productsPage.clickViewProductLink();
-        productsPage.isProductDetailsDisplayed();
-        productsPage.setProductQuantity(qty);
-        productsPage.addFirstProductToCartAndContinue();
+    public void checkCartEmptyText(String expected_text){
+        Assert.assertEquals(cartPage.getCartEmptyText(), expected_text);
     }
 
     @Step
@@ -80,6 +76,12 @@ public class CartSteps extends BaseSteps {
         int totalPrice = cartPage.getCartTotalPrice();
         int expectedTotal = unitPrice * qty;
         Assert.assertEquals(totalPrice, expectedTotal);
+    }
+
+    @Step
+    public void deleteProductAndCheckCartEmpty(String expected_text){
+        cartPage.deleteFirstProductFromCart();
+        Assert.assertEquals(cartPage.getCartEmptyText(), expected_text);
     }
 
 }

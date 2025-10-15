@@ -94,19 +94,6 @@ public class ProductsPage extends BasePage {
                 .executeScript("arguments[0].scrollIntoView(true);", firstViewProductLink);
     }
 
-    public void scrollPageUntilVisible(WebElement element) {
-        int maxScrolls = 10;
-        int scrollIncrement = 300;
-
-        for (int i = 0; i < maxScrolls; i++) {
-            if (element.isDisplayed()) {
-                break;
-            }
-            evaluateJavascript("window.scrollBy(0, arguments[0]);", scrollIncrement);
-            waitABit(300);
-        }
-    }
-
     public void clickViewProductLink(){
         clickOn(firstViewProductLink);
     }
