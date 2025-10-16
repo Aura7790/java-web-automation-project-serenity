@@ -15,7 +15,6 @@ public class SearchSteps extends BaseSteps{
     public void verifySearchResultsAreNotEmpty() {
         Assert.assertTrue(productsPage.isSearchResultNotEmpty());
         Assert.assertNotEquals(0, productsPage.getSearchResultCount());
-        System.out.println("Search results found: " + productsPage.getSearchResultCount());
     }
 
     @Step

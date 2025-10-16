@@ -51,22 +51,20 @@ public class LoginSteps extends BaseSteps {
     @Step
     public void checkPasswordFieldEmptyMessage(String message){
         String validationMessage = loginPage.getPasswordFieldValidationMessage();
-        System.out.println("Validation Message: " + validationMessage);
         Assert.assertTrue("Expected browser validation message", validationMessage.toLowerCase().contains(message));
     }
 
     @Step
     public void checkEmailFieldErrorMessage(String message){
         String validationMessage = loginPage.getEmailFieldValidationMessage();
-        System.out.println("Validation Message: " + validationMessage);
         Assert.assertTrue("Expected browser validation message", validationMessage.toLowerCase().contains(message));
     }
 
     @Step
     public void loginWithExistentUser(String email, String password, String username){
-        loginPage.setEmailField(email);
-        loginPage.setPasswordField(password);
-        loginPage.clickLoginButton();
+        setUserEmail(email);
+        setUserPassword(password);
+        clickLogin();
         accountPage.isLogoutLinkVisible();
         Assert.assertEquals("Logged in as " + username, accountPage.getLoggedInText(username));
     }

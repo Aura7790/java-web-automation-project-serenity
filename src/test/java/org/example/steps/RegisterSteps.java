@@ -76,14 +76,12 @@ public class RegisterSteps extends BaseSteps {
     @Step
     public void checkNameFieldEmptyMessage(String message){
         String validationMessage = registerPage.getNameFieldValidationMessage();
-        System.out.println("Validation Message: " + validationMessage);
         Assert.assertTrue("Expected browser validation message", validationMessage.toLowerCase().contains(message));
     }
 
     @Step
     public void checkEmailFieldErrorMessage(String message){
         String validationMessage = registerPage.getEmailFieldValidationMessage();
-        System.out.println("Validation Message: " + validationMessage);
         Assert.assertTrue("Expected browser validation message", validationMessage.toLowerCase().contains(message));
     }
 }

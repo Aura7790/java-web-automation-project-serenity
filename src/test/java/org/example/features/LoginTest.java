@@ -1,5 +1,6 @@
 package org.example.features;
 
+import net.serenitybdd.annotations.WithTag;
 import org.example.utils.TestDataGenerator;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -18,6 +19,7 @@ public class LoginTest extends BaseTest{
     private final String emptyFieldMessage = "please fill in this field";
 
     @Test
+    @WithTag(name = "type", value = "smoke")
     public void loginWithValidCredentials() {
         loginSteps.navigateToRegisterLoginPage();
         loginSteps.checkLoginHeading(loginHeading);

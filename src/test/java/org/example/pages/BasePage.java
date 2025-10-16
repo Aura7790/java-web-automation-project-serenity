@@ -10,7 +10,6 @@ public class BasePage extends PageObject {
     }
 
     public String getValidationMessageFor(WebElementFacade element) {
-        JavascriptExecutor js = (JavascriptExecutor) getDriver();
-        return (String) js.executeScript("return arguments[0].validationMessage;", element);
+        return getJavascriptExecutorFacade().executeScript("return arguments[0].validationMessage;", element).toString();
     }
 }

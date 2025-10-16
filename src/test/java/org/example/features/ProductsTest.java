@@ -1,5 +1,6 @@
 package org.example.features;
 
+import net.serenitybdd.annotations.WithTag;
 import org.junit.Test;
 
 import static org.example.utils.Constants.PRODUCTS_URL;
@@ -13,6 +14,7 @@ public class ProductsTest extends BaseTest{
     }
 
     @Test
+    @WithTag(name = "type", value = "smoke")
     public void productsListLoadsSuccessfully(){
         productsSteps.openProductsPage();
         productsSteps.checkProductsListDisplayed();
@@ -20,6 +22,7 @@ public class ProductsTest extends BaseTest{
     }
 
     @Test
+    @WithTag(name = "type", value = "smoke")
     public void productDetailPageOpens(){
         productsSteps.openProductsPage();
         productsSteps.checkProductsListDisplayed();
@@ -31,6 +34,7 @@ public class ProductsTest extends BaseTest{
     }
 
     @Test
+    @WithTag(name = "type", value = "smoke")
     public void addProductToCartWithValidQty(){
         productsSteps.openProductsPage();
         productsSteps.checkProductsListDisplayed();
@@ -47,6 +51,7 @@ public class ProductsTest extends BaseTest{
     }
 
     @Test
+    @WithTag(name = "type", value = "smoke")
     public void checkPriceIsDisplayedForAllProducts(){
         productsSteps.openProductsPage();
         productsSteps.checkProductsListDisplayed();
@@ -55,6 +60,7 @@ public class ProductsTest extends BaseTest{
     }
 
     @Test
+    @WithTag(name = "type", value = "smoke")
     public void verifyProductPriceMatchesBetweenListingAndCart() {
         productsSteps.openProductsPage();
         productsSteps.checkProductsListDisplayed();
