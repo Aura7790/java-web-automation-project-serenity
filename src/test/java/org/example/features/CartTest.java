@@ -1,17 +1,11 @@
 package org.example.features;
-import net.serenitybdd.annotations.WithTag;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import static org.example.utils.Constants.*;
 
 public class CartTest extends BaseTest {
-    private static final Logger log = LoggerFactory.getLogger(CartTest.class);
     private final String cartEmptyText = "Cart is empty! Click here to buy products.";
 
     @Test
-    @WithTag(name = "type", value = "smoke")
     public void checkCartAfterClickOnViewCart(){
         productsSteps.openProductsPage();
         productsSteps.checkProductsListDisplayed();
@@ -42,7 +36,6 @@ public class CartTest extends BaseTest {
     }
 
     @Test
-    @WithTag(name = "type", value = "smoke")
     public void checkProceedToCheckout(){
         productsSteps.openProductsPage();
         productsSteps.checkProductsListDisplayed();
@@ -64,7 +57,6 @@ public class CartTest extends BaseTest {
     }
 
     @Test
-    @WithTag(name = "type", value = "smoke")
     public void deleteProductFromCart() {
         productsSteps.openProductsPage();
         productsSteps.checkProductsListDisplayed();

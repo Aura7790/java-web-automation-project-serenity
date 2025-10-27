@@ -1,16 +1,10 @@
 package org.example.features;
-
-import net.serenitybdd.annotations.WithTag;
 import org.example.utils.TestDataGenerator;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import static org.example.utils.Constants.*;
 
 public class LoginTest extends BaseTest{
 
-    private static final Logger log = LoggerFactory.getLogger(LoginTest.class);
     TestDataGenerator dataGenerator = new TestDataGenerator();
     private final String uniqueEmail = dataGenerator.generateUniqueEmail();
     private final String uniquePassword = dataGenerator.generateUniquePassword();
@@ -19,7 +13,6 @@ public class LoginTest extends BaseTest{
     private final String emptyFieldMessage = "please fill in this field";
 
     @Test
-    @WithTag(name = "type", value = "smoke")
     public void loginWithValidCredentials() {
         loginSteps.navigateToRegisterLoginPage();
         loginSteps.checkLoginHeading(loginHeading);

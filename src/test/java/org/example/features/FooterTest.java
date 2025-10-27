@@ -1,6 +1,5 @@
 package org.example.features;
 
-import net.serenitybdd.annotations.WithTag;
 import org.junit.Assert;
 import org.junit.Test;
 import org.example.utils.TestDataGenerator;
@@ -12,7 +11,6 @@ public class FooterTest extends BaseTest {
 
 
     @Test
-    @WithTag(name = "type", value = "smoke")
     public void footerSubscriptionWithValidEmail() {
         productsSteps.openProductsPage();
         footerSteps.enterFooterEmail(uniqueEmail);

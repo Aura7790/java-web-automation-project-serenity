@@ -1,6 +1,4 @@
 package org.example.features;
-
-import net.serenitybdd.annotations.WithTag;
 import org.junit.Test;
 
 public class SearchTest extends BaseTest{
@@ -12,7 +10,6 @@ public class SearchTest extends BaseTest{
     }
 
     @Test
-    @WithTag(name = "type", value = "smoke")
     public void searchForProductKeyword(){
         productsSteps.openProductsPage();
         searchSteps.searchForProduct("top");

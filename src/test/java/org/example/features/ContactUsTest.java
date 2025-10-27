@@ -1,8 +1,5 @@
 package org.example.features;
-
-import net.serenitybdd.annotations.WithTag;
 import org.junit.Test;
-
 import static org.example.utils.Constants.CONTACT_US_URL;
 
 public class ContactUsTest extends BaseTest{
@@ -14,7 +11,6 @@ public class ContactUsTest extends BaseTest{
     }
 
     @Test
-    @WithTag(name = "type", value = "smoke")
     public void contactUsFormSubmitWithValidData(){
         contactUsSteps.openContactUsPage();
         contactUsSteps.isContactUsFormVisible();

@@ -1,9 +1,6 @@
 package org.example.features;
-
-import net.serenitybdd.annotations.WithTag;
 import org.example.utils.TestDataGenerator;
 import org.junit.Test;
-
 import static org.example.utils.Constants.USER_EMAIL;
 
 public class RegisterTest extends BaseTest {
@@ -16,7 +13,6 @@ public class RegisterTest extends BaseTest {
     private final String emptyFieldMessage = "please fill in this field";
 
     @Test
-    @WithTag(name = "type", value = "smoke")
     public void signUpWithValidData(){
         // first part of the form
         loginSteps.navigateToRegisterLoginPage();
