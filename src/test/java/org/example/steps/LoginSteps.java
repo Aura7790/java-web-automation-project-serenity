@@ -69,4 +69,11 @@ public class LoginSteps extends BaseSteps {
         Assert.assertEquals("Logged in as " + username, accountPage.getLoggedInText(username));
     }
 
+    @Step
+    public void deleteAccountAndCheckIsDeleted(String message){
+        loginPage.clickDeleteAccountButton();
+        Assert.assertEquals(message, loginPage.getDeleteAccountSuccessMessage());
+        loginPage.clickContinueBtnAfterDeleteAccount();
+    }
+
 }

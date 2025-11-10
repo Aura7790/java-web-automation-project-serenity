@@ -1,10 +1,14 @@
 package org.example.features;
 import org.example.utils.TestDataGenerator;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import static org.example.utils.Constants.USER_EMAIL;
 
 public class RegisterTest extends BaseTest {
 
+    private static final Logger log = LoggerFactory.getLogger(RegisterTest.class);
     TestDataGenerator dataGenerator = new TestDataGenerator();
     private final String uniqueName = dataGenerator.generateUniqueName();
     private final String uniqueEmail = dataGenerator.generateUniqueEmail();
@@ -34,7 +38,7 @@ public class RegisterTest extends BaseTest {
     }
 
     @Test
-    public void signupWithExistentEmail(){
+    public void signupWithExistingEmail(){
         loginSteps.navigateToRegisterLoginPage();
         registerSteps.checkSignupHeading(signupHeading);
         registerSteps.setUserName(uniqueName);
@@ -71,5 +75,27 @@ public class RegisterTest extends BaseTest {
         registerSteps.setEmail("invalid-email");
         registerSteps.clickSignup();
         registerSteps.checkEmailFieldErrorMessage("please include an '@' in the email address");
+    }
+
+    @Test
+    public void signupNewUserAndDeleteIt(){
+        // first part of the form
+        loginSteps.navigateToRegisterLoginPage();
+        registerSteps.checkSignupHeading(signupHeading);
+        registerSteps.setUserName(uniqueName);
+        registerSteps.setEmail(uniqueEmail);
+        registerSteps.clickSignup();
+        // second part of the form
+        registerSteps.checkSignupForm("ENTER ACCOUNT INFORMATION");
+        registerSteps.checkNameFieldText(uniqueName);
+        registerSteps.checkEmailFieldText(uniqueEmail);
+        registerSteps.setAccountInformation("titleMrs", uniquePassword, "12", "September", "1990");
+        registerSteps.setAddressInformation();
+        registerSteps.clickCreateAccount();
+        registerSteps.checkAccountCreatedMessage();
+        registerSteps.clickContinue();
+        loginSteps.userIsLoggedIn(uniqueName);
+        loginSteps.deleteAccountAndCheckIsDeleted("ACCOUNT DELETED!");
+        homeSteps.checkLogoOnHomePage();
     }
 }

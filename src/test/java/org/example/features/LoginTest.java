@@ -21,6 +21,7 @@ public class LoginTest extends BaseTest{
         loginSteps.clickLogin();
         loginSteps.userIsLoggedIn(USER_NAME);
         loginSteps.logoutUser();
+        loginSteps.checkLoginHeading(loginHeading);
     }
 
     @Test

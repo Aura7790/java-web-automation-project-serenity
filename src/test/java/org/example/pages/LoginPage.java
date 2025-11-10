@@ -19,6 +19,15 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//p[contains(text(),'Your email or password is incorrect!')]")
     private WebElementFacade failedLogin;
 
+    @FindBy(xpath = "//a[@href='/delete_account']")
+    private WebElementFacade deleteAccountButton;
+
+    @FindBy(xpath = "//b[text()='Account Deleted!']")
+    private WebElementFacade accountDeletedText;
+
+    @FindBy(xpath = "//a[@data-qa='continue-button']")
+    private WebElementFacade continueAfterDeleteButton;
+
     public String getHeadingText() {
         return loginHeading.getText();
     }
@@ -46,6 +55,19 @@ public class LoginPage extends BasePage {
 
     public String getPasswordFieldValidationMessage() {
         return getValidationMessageFor(passwordField);
+    }
+
+    public void clickDeleteAccountButton(){
+        clickOn(deleteAccountButton);
+    }
+
+    public String getDeleteAccountSuccessMessage(){
+        return accountDeletedText.getText();
+    }
+
+    public void clickContinueBtnAfterDeleteAccount(){
+        waitFor(continueAfterDeleteButton);
+        clickOn(continueAfterDeleteButton);
     }
 
 }
