@@ -22,6 +22,21 @@ public class ProductsPage extends BasePage {
     @FindBy(xpath = "//div[@class='product-information']")
     private WebElementFacade productDetailsSection;
 
+    @FindBy(xpath = "//h2[contains(text(), 'Blue Top')]")
+    private WebElementFacade productName;
+
+    @FindBy(xpath = "//p[contains(text(), 'Category: Women > Tops')]")
+    private WebElementFacade productCategoryWomenTops;
+
+    @FindBy(xpath = "//p[2][contains(text(), 'In Stock')]")
+    private WebElementFacade productAvailability;
+
+    @FindBy(xpath = "//p[3][contains(text(), 'New')]")
+    private WebElementFacade productCondition;
+
+    @FindBy(xpath = "//p[4][contains(text(), 'Polo')]")
+    private WebElementFacade productBrand;
+
     @FindBy(xpath = "//div[@class='left-sidebar']/h2[text()='Category']")
     private WebElementFacade categorySection;
 
@@ -101,6 +116,26 @@ public class ProductsPage extends BasePage {
     public boolean isProductDetailsDisplayed(){
         productDetailsSection.waitUntilVisible();
         return productDetailsSection.isDisplayed();
+    }
+
+    public String getProductName(){
+        return productName.getText();
+    }
+
+    public String getProductCategory(){
+        return productCategoryWomenTops.getText();
+    }
+
+    public String getProductAvailability(){
+        return productAvailability.getText();
+    }
+
+    public String getProductCondition(){
+        return productCondition.getText();
+    }
+
+    public String getProductBrand(){
+        return productBrand.getText();
     }
 
     public boolean isCategorySectionDisplayed(){

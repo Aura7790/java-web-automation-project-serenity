@@ -46,6 +46,31 @@ public class ProductsSteps extends BaseSteps {
     }
 
     @Step
+    public void checkProductName(String name){
+        Assert.assertEquals(name, productsPage.getProductName());
+    }
+
+    @Step
+    public void checkProductCategory(String category){
+        Assert.assertEquals(category, productsPage.getProductCategory());
+    }
+
+    @Step
+    public void checkProductAvailability(String availability){
+        Assert.assertEquals(availability, productsPage.getProductAvailability());
+    }
+
+    @Step
+    public void checkProductCondition(String condition){
+        Assert.assertEquals(condition, productsPage.getProductCondition());
+    }
+
+    @Step
+    public void checkProductBrand(String brand){
+        Assert.assertEquals(brand, productsPage.getProductBrand());
+    }
+
+    @Step
     public void isProductCategorySectionVisible(){
         Assert.assertTrue(productsPage.isCategorySectionDisplayed());
     }

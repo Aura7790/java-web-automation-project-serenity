@@ -29,6 +29,20 @@ public class ProductsTest extends BaseTest{
     }
 
     @Test
+    public void checkProductDetails(){
+        productsSteps.openProductsPage();
+        productsSteps.checkProductsListDisplayed();
+        productsSteps.scrollToFirstViewProduct();
+        productsSteps.clickViewFirstProductLink();
+        productsSteps.isProductDetailSectionVisible();
+        productsSteps.checkProductName("Blue Top");
+        productsSteps.checkProductCategory("Category: Women > Tops");
+        productsSteps.checkProductAvailability("Availability: In Stock");
+        productsSteps.checkProductCondition("Condition: New");
+        productsSteps.checkProductBrand("Brand: Polo");
+    }
+
+    @Test
     public void addProductToCartWithValidQty(){
         productsSteps.openProductsPage();
         productsSteps.checkProductsListDisplayed();
