@@ -4,7 +4,7 @@ import io.restassured.response.Response;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class ProductsListNegativeTest extends BaseApiTest {
+public class ProductsListNegative extends BaseApi {
 
     @Test
     public void postToProductsListReturns405() {

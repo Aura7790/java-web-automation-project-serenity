@@ -12,7 +12,7 @@ import java.util.List;
 import static org.example.utils.Constants.BASE_URL_API;
 
 @RunWith(SerenityRunner.class)
-public class BaseApiTest {
+public class BaseApi {
     protected Response get(String endpoint) {
         return SerenityRest.rest()
                 .relaxedHTTPSValidation()

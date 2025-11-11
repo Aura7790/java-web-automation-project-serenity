@@ -8,7 +8,7 @@ import org.junit.Test;
 import java.util.List;
 
 
-public class GetProductsListTest extends BaseApiTest {
+public class GetProductsList extends BaseApi {
 
     @Test
     public void checkProductsListReturnsSuccess() {
