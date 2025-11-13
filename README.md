@@ -45,6 +45,7 @@ It provides detailed **Serenity HTML reports** that combine UI screenshots and A
    ```bash
    git clone https://github.com/<user>/java-web-automation-project-serenity.git
    cd java-web-automation-project-serenity
+ ---
 
 ## 🚀 Running Tests
 🔹 Run Web Tests
@@ -66,6 +67,8 @@ Reports include:
 - Screenshots for UI tests
 - Request & response logs for API tests
 - Result dashboards and success metrics
+
+---
 
 🧱 Page Object Model + Page Factory
 
@@ -120,7 +123,6 @@ public class LoginTest extends BaseWebTest {
     }
 }
 ```
-
 
 ---
 
