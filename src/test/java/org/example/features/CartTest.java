@@ -3,7 +3,6 @@ import org.junit.Test;
 import static org.example.utils.Constants.*;
 
 public class CartTest extends BaseTest {
-    private final String cartEmptyText = "Cart is empty! Click here to buy products.";
 
     @Test
     public void checkCartAfterClickOnViewCart(){
@@ -36,7 +35,7 @@ public class CartTest extends BaseTest {
     }
 
     @Test
-    public void checkProceedToCheckout(){
+    public void checkProceedToCheckoutModal(){
         productsSteps.openProductsPage();
         productsSteps.checkProductsListDisplayed();
         productsSteps.scrollToFirstViewProduct();
@@ -53,7 +52,7 @@ public class CartTest extends BaseTest {
         cartSteps.checkLoginRegisterLinkText("Register / Login");
         cartSteps.checkContinueOnCartText("Continue On Cart");
         cartSteps.goToRegisterLoginPage();
-        loginSteps.checkLoginHeading("Login to your account");
+        loginSteps.checkLoginHeading(LOGIN_HEADING);
     }
 
     @Test
@@ -68,7 +67,7 @@ public class CartTest extends BaseTest {
         productsSteps.isCartModalVisible();
         productsSteps.clickViewCart();
         cartSteps.deleteProductFromCart();
-        cartSteps.checkCartEmptyText(cartEmptyText);
+        cartSteps.checkCartEmptyText(CART_EMPTY_MESSAGE);
     }
 
     @Test
@@ -88,7 +87,7 @@ public class CartTest extends BaseTest {
         loginSteps.loginWithExistentUser(USER_EMAIL, USER_PASSWORD, USER_NAME);
         productsSteps.searchForProductAndAddToCart("T-Shirt", 1);
         cartSteps.checkProductAddedIsInCart();
-        cartSteps.deleteProductAndCheckCartEmpty(cartEmptyText);
+        cartSteps.deleteProductAndCheckCartEmpty(CART_EMPTY_MESSAGE);
         loginSteps.logoutUser();
     }
 }

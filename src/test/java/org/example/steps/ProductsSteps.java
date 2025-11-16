@@ -9,8 +9,10 @@ import java.util.List;
 public class ProductsSteps extends BaseSteps {
 
     @Step
-    public void openProductsPage() {
-        homePage.clickOnCookiesConsent();
+    public void openProductsPage(){
+        if(homePage.isCookiesConsentVisible()) {
+            homePage.clickOnCookiesConsent();
+        }
         productsPage.clickProductsLink();
     }
 

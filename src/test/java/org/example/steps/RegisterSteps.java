@@ -84,4 +84,20 @@ public class RegisterSteps extends BaseSteps {
         String validationMessage = registerPage.getEmailFieldValidationMessage();
         Assert.assertTrue("Expected browser validation message", validationMessage.toLowerCase().contains(message));
     }
+
+    @Step
+    public void registerNewUserWithValidData(String uniqueName, String uniqueEmail, String uniquePassword){
+        setUserName(uniqueName);
+        setEmail(uniqueEmail);
+        clickSignup();
+        // second part of the form
+        checkSignupForm("ENTER ACCOUNT INFORMATION");
+        checkNameFieldText(uniqueName);
+        checkEmailFieldText(uniqueEmail);
+        setAccountInformation("titleMrs", uniquePassword, "12", "September", "2001");
+        setAddressInformation();
+        clickCreateAccount();
+        checkAccountCreatedMessage();
+        clickContinue();
+    }
 }

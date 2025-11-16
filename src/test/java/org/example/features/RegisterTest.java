@@ -1,26 +1,21 @@
 package org.example.features;
 import org.example.utils.TestDataGenerator;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import static org.example.utils.Constants.USER_EMAIL;
+import static org.example.utils.Constants.*;
 
 public class RegisterTest extends BaseTest {
 
-    private static final Logger log = LoggerFactory.getLogger(RegisterTest.class);
     TestDataGenerator dataGenerator = new TestDataGenerator();
     private final String uniqueName = dataGenerator.generateUniqueName();
     private final String uniqueEmail = dataGenerator.generateUniqueEmail();
     private final String uniquePassword = dataGenerator.generateUniquePassword();
-    private final String signupHeading = "New User Signup!";
-    private final String emptyFieldMessage = "please fill in this field";
 
     @Test
     public void signUpWithValidData(){
         // first part of the form
         loginSteps.navigateToRegisterLoginPage();
-        registerSteps.checkSignupHeading(signupHeading);
+        registerSteps.checkSignupHeading(SIGNUP_HEADING);
         registerSteps.setUserName(uniqueName);
         registerSteps.setEmail(uniqueEmail);
         registerSteps.clickSignup();
@@ -40,7 +35,7 @@ public class RegisterTest extends BaseTest {
     @Test
     public void signupWithExistingEmail(){
         loginSteps.navigateToRegisterLoginPage();
-        registerSteps.checkSignupHeading(signupHeading);
+        registerSteps.checkSignupHeading(SIGNUP_HEADING);
         registerSteps.setUserName(uniqueName);
         registerSteps.setEmail(USER_EMAIL);
         registerSteps.clickSignup();
@@ -50,27 +45,27 @@ public class RegisterTest extends BaseTest {
     @Test
     public void signupWithEmptyName(){
         loginSteps.navigateToRegisterLoginPage();
-        registerSteps.checkSignupHeading(signupHeading);
+        registerSteps.checkSignupHeading(SIGNUP_HEADING);
         registerSteps.setUserName("");
         registerSteps.setEmail(uniqueEmail);
         registerSteps.clickSignup();
-        registerSteps.checkNameFieldEmptyMessage(emptyFieldMessage);
+        registerSteps.checkNameFieldEmptyMessage(EMPTY_FIELD_MESSAGE);
     }
 
     @Test
     public void signupWithEmptyEmail(){
         loginSteps.navigateToRegisterLoginPage();
-        registerSteps.checkSignupHeading(signupHeading);
+        registerSteps.checkSignupHeading(SIGNUP_HEADING);
         registerSteps.setUserName(uniqueName);
         registerSteps.setEmail("");
         registerSteps.clickSignup();
-        registerSteps.checkEmailFieldErrorMessage(emptyFieldMessage);
+        registerSteps.checkEmailFieldErrorMessage(EMPTY_FIELD_MESSAGE);
     }
 
     @Test
     public void signupWithInvalidEmailFormat() {
         loginSteps.navigateToRegisterLoginPage();
-        registerSteps.checkSignupHeading(signupHeading);
+        registerSteps.checkSignupHeading(SIGNUP_HEADING);
         registerSteps.setUserName(uniqueName);
         registerSteps.setEmail("invalid-email");
         registerSteps.clickSignup();
@@ -81,7 +76,7 @@ public class RegisterTest extends BaseTest {
     public void signupNewUserAndDeleteIt(){
         // first part of the form
         loginSteps.navigateToRegisterLoginPage();
-        registerSteps.checkSignupHeading(signupHeading);
+        registerSteps.checkSignupHeading(SIGNUP_HEADING);
         registerSteps.setUserName(uniqueName);
         registerSteps.setEmail(uniqueEmail);
         registerSteps.clickSignup();

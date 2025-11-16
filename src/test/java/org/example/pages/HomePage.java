@@ -40,6 +40,10 @@ public class HomePage extends BasePage {
         return logo.isDisplayed();
     }
 
+    public boolean isCookiesConsentVisible(){
+        return cookiesConsentBtn.isVisible();
+    }
+
     public void clickOnCookiesConsent() {
         clickOn(cookiesConsentBtn);
     }

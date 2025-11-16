@@ -30,6 +30,8 @@ public abstract class BaseTest {
     protected RegisterSteps registerSteps;
     @Steps
     protected SearchSteps searchSteps;
+    @Steps
+    protected CheckoutSteps checkoutSteps;
 
     @Before
     public void initTests(){
